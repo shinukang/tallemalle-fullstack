@@ -4,11 +4,33 @@ on:
   push:
     branches: [ "main" ]
 jobs:
-  deploy:
+  build-and-deply:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Docker Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build with Gradle
+        run: |
+          chmod +x ./gradlew
+          ./gradlew clean bootJar
+
+      - name: Build with Docker
+        run:
+          docker build -t shinukang/tallemell-be:latest .
+          docker push shinukang/tallemell-be:latest .
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
