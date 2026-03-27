@@ -1,18 +1,22 @@
-name: deployment
+name: Deploy Workflow
+
 on:
   push:
-    branches: [main]
-  jobs:
-    deply:
-      name: deploy
-      runs-on: ubuntu-latest
-      steps:
-        - name: run ssh
-          uses: applyboy/ssh-action@v1
-          with:
-            host: ${{secrets.HOST}}
-            username: ${{secrets.USERNAME}}
-            key: ${{secrets.SSH_KEY}}
-            port: ${{sercets.PORT}}
-            script: |
-              echo test > /tmp/test
+    branches: [ "main" ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            echo "Deploying to server..."
+            # 실행할 배포 스크립트 작성
