@@ -24,7 +24,7 @@ jobs:
 
       - name: Build with Gradle
         run: |
-          chmod +x .tallemalle-be/gradlew
+          chmod +x ./tallemalle-be/gradlew
           ./gradlew clean bootJar
 
       - name: Build with Docker
