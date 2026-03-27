@@ -23,6 +23,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build with Gradle
+        working-directory: tallemalle-be
         run: |
           chmod +x ./tallemalle-be/gradlew
           ./gradlew clean bootJar
