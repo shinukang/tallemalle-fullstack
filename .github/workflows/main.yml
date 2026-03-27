@@ -23,10 +23,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build with Gradle
-        working-directory: tallemalle-be
         run: |
-          chmod +x gradlew
-          ./gradlew clean bootJar
+          chmod +x ./tallemalle-be/gradlew
+          ./tallemalle-be/gradlew clean bootJar
 
       - name: Build with Docker
         run:
