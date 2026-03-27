@@ -25,7 +25,7 @@ jobs:
       - name: Build with Gradle
         working-directory: tallemalle-be
         run: |
-          chmod +x ./tallemalle-be/gradlew
+          chmod +x gradlew
           ./gradlew clean bootJar
 
       - name: Build with Docker
