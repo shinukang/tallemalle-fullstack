@@ -1,4 +1,4 @@
-name: Deploy Workflow
+name: build and deploy
 
 on:
   push:
@@ -18,5 +18,4 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            echo "Deploying to server..."
-            # 실행할 배포 스크립트 작성
+            echo "Deploying to server..."  > /tmp/test
