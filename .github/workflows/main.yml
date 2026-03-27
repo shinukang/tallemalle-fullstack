@@ -28,7 +28,8 @@ jobs:
           ./tallemalle-be/gradlew -p tallemalle-be clean bootJar
 
       - name: Build with Docker
-        run:
+        working-directory: tallemalle-be
+        run: |
           docker build -t shinukang/tallemell-be:latest .
           docker push shinukang/tallemell-be:latest
 
