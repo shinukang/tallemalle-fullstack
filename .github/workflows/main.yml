@@ -41,4 +41,4 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            echo "Deploying to server..."  > /tmp/test
+            echo "Build and Deploying to server..."  > /tmp/temp
